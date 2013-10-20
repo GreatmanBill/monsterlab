@@ -1,0 +1,74 @@
+作者:小兵
+
+1,简历先别做,这个难度比较高
+
+2,数据库管理员表(dba)
+这个表为所有工作室成员表,即,工作室的成员的登录入口是一样的,但权限可以不一样
+我们的后台,通过限制权限来现在一些成员的操作
+dba:
+    user_id             #用户id
+    username            #用户名 
+    password            #密码
+    power               #管理员权限
+    mail                #邮件地址
+    sex                 #性别
+    avator              #头像地址信息
+    description         #描述信息
+    research_fields     #研究领域,每条以逗号分割
+    
+3,成员表(member)
+这个表应该以后为注册用户来使用
+后期会加上一个论坛,这个来存储论坛的用户表
+member:
+
+4,团队作品表(team_works)
+这个表用来展示团队的项目作品,这个表分出来的原因是因为后期会对团队
+展示的作品进行优化
+team_works:
+    id
+    work_name       #作品名
+    work_intro      #作品介绍
+	team_leader		#组长
+    team_members    #合作者成员,以逗号分割存储user_id
+    start_time      #开发开始时间
+    end_time        #开发结束时间
+    honor           #获得荣誉,没有时,可以不展示
+    pic_ids         #图片id,图片的id,以逗号分开,这个可以用来排序
+    relate_links    #相关连接,没条以"标题:链接","标题:连接"格式
+
+5,个人作品表(person_work)
+这个表用于展示每个人的作品
+person_work:
+    id
+    user_id
+    work_name
+    work_intro
+    start_time
+    end_time
+    pic_id
+    relate_links
+
+6,新闻表(news)
+这个表用于存储发的新闻信息
+news:
+    id              #
+    user_id         #用户id
+    username        #用户名,这个这样做的目的是,以后就不用再查用户表了
+    release_time    #新闻发布时间
+    title           #新闻标题
+    content         #新闻内容
+    is_display      #是否展示该新闻
+    
+7,留言表(message)
+该表用于给我们留言和我们进行回复
+message:
+    id
+    username        #留言用户
+    content         #留言内容,回复内容建议有符号,但可以没有
+    ctime           #留言时间
+8,图片表(pictures)
+pictures:
+	pid 
+	pic_show_name	#url地址
+	pic_org_name	#图片原名
+	ctime			# 上传时间
