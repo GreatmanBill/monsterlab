@@ -1,0 +1,55 @@
+#该文件解释了django中auth模块的表结构
+
+在默认的django中,auth表有:
+
+1.auth_use这是用户信息表
+auth_user:
+    id int                  --用户id
+    password                --用户密码,经过加密存储,不是原生字符串
+    last_login              --上次登录日期
+    is_superuser            --是否是超级用户
+    username                --用户名 = first_name + last_name
+    first_name              --
+    last_name               --
+    email                   --邮件地址
+    is_staff                --是否是管理员,即是否可以登录管理后台
+    is_active               --是否激活,创建用户后,可以设定是否激活用户
+    date_joined             --创建该用户的时间
+
+2,auth_group 这个是对用户分组
+
+auth_group:
+    id int                  --分组id
+    name varchar(*)         --用户分组名字 
+
+3.auth_user_groups 这个是一个用户和用户组间的关系表
+auth_user_groups:
+    id                      --关系id
+    user_id                 --用户id,对应auth_user中的id
+    group_id                --对应与auth_group中的id
+
+
+4.django_content_type 这个是一个模块表
+django_content_type:
+    id                      --模块id
+    name                    --模块的名字
+    app_label               --对于的app名字
+    model                   --model名字
+    
+    注:app_label是我们每次开启的一个app,如授权auth模块,但一个app里面可以有
+    几个model,如授权下有group,user,permission这三个模块
+
+4.auth_permissions 这是一个授权表,对模块进行授权,即一个app进行授权
+auth_permissions:
+    id                      --权限id
+    name                    --权限的名字
+    content_type_id         --对于django_content_type中模块id
+    codename                --在程序中引用的名字
+
+5.auth_user_user_permissions 这个是对单个用户的授权表
+auth_user_user_permissions:
+    id                      --授权id
+    user_id                 --用户id,对于auth_user中的id
+    permission_id           --权限id,对应auth_permissions中的id
+
+

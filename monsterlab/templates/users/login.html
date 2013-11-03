@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{% load staticfiles %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>欢迎您登录同袍工作室</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <!--<link rel="stylesheet" type="text/css" href="{%static 'css/style.css' %}"/>-->
+	</head>
+	<body>
+        {% if error_message %} <p><strong>{{error_message}}</strong></p> {% endif %}
+        <form action = '{% url 'login' %}' method = 'post'>
+            {% csrf_token %}
+            <p><label for='username'></label><input type='text' name = 'username' id = 'username'/></p>
+            <p><label for='password'></label><input type='text' name = 'password' id = 'password'/></p>
+            <p><input type='submit' name = 'sub' value='登录' /><input type='reset' value='重填'/></p>
+        </form>
+	</body>
+	
+</html>
